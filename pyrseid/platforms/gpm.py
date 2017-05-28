@@ -1,6 +1,3 @@
-import sys
-sys.dont_write_bytecode = True
-
 from ..utils import date_to_doy
 from ..product import BaseProduct
 from ..file import BaseFile

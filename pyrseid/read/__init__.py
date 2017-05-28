@@ -2,7 +2,7 @@
 Reading data from hdfs
 """
 import numpy as np
-from .file import BaseFile
+from ..file import BaseFile
 
 
 def fields_with_gdal(file):

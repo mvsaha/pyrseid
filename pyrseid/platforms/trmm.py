@@ -1,20 +1,13 @@
-import sys
-sys.dont_write_bytecode = True
-
-import geospatial
-import geospatial as gs
-import geospatial.utils as gu
-from geospatial.utils import date_to_doy
-from geospatial.product import BaseProduct
-from geospatial.file import BaseFile
-from geospatial import Range
+from ..utils import date_to_doy
+from ..product import BaseProduct
+from ..file import BaseFile
+from ..base import Range
 from ..utils import list_files
 
 import os
 import datetime
 import numpy as np
 import calendar
-import re
 
 
 _valid_products_ = ['3B42','3B42_daily','3B43']

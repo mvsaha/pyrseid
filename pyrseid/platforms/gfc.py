@@ -6,7 +6,8 @@ from ..base import BoundingBox, Range
 from ..tile import BaseTile
 from ..product import BaseProduct
 from ..file import BaseFile
-from ..download import putfile
+#from ..download import putfile
+
 
 class Tile(BaseTile):
     """Represents a 10°x10° GFC granule."""
@@ -80,12 +81,13 @@ _valid_versions_ = [1.0,1.2]
 
 
 def list_products(path=None):
-    """List the GCF products in a directory, or all possible products if path is None."""
+    """List the GCF products in a directory, or all possible products if path
+    is None."""
     if path is None:
         return _valid_products_[:]
     else:
         assert(os.path.isdir(path))
-        return [l for l in os.listdir(path) if l.startswith(hansen_prefix)]
+        return [l for l in os.listdir(path) if l.startswith(_hansen_)]
 
 
 """A GFC data product."""
@@ -155,7 +157,7 @@ class File(BaseFile):
         return '/'.join([_url_prefix,_ver_str_[product.version],fname])
     
     
-    def grab(self,directory,replace=False):
+    def grab(self, directory, replace=False):
         """Download a file to a directory if it is not already there."""
         if not self.is_valid:
             raise RuntimeError('File is not valid: '+str(self))
@@ -163,7 +165,7 @@ class File(BaseFile):
         put_path = os.path.join(directory,self.filename)
         if not self.is_local and not os.path.exists(put_path):
             print("Downloading "+self.filename)
-            putfile(self.path,put_path)
+            putfile(self.path, put_path)
         
         if os.path.exists(put_path):
             # If this was successful, update self to point to the local version
@@ -214,7 +216,8 @@ class File(BaseFile):
     
     def bbox(self):
         return self.tile
-    
+
+
 def have_files():
     for i in range(0):
         pass

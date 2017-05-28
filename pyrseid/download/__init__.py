@@ -213,6 +213,8 @@ def grab_https(remote_filepath, local_filepath, chunk_size=1048567, ssl_verify=s
 
 class BadRequestError(Exception):
     """Raised when a file is requested that does not exist."""
+    pass
+
 
 # Known pages that are redirects when a file is missing
 _bad_request_pages = {
