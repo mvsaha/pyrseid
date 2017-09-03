@@ -1,3 +1,5 @@
+import os
+
 def has_modlist(modfolder,prod,date):
     """Check if a modfolder/prodfolder/datefolder has a modlist.
 

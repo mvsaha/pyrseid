@@ -1,5 +1,6 @@
-import geospatial.platforms.modis as modis
-from geospatial.utils import list_links, psv_date, date_to_psv
+from .file import File
+from ...utils import list_links, psv_date, date_to_psv
+
 
 _lpdaac_url_ = "http://e4ftl01.cr.usgs.gov"
 def get_product_url(prod):
@@ -53,8 +54,8 @@ def available_files(prod, dates=None, tiles=None, exact_dates=False):
         #print("Searching for files on", d, end="\r")
         print(ad[d])
         all_filenames = [l for l in list_links(ad[d]) if l.endswith('.hdf')]
-        files = [modis.File.from_path('/'.join([ad[d], f]))
-                 for f in all_filenames]
+        files = [File.from_path('/'.join([ad[d], f]))
+            for f in all_filenames]
         if dates is not None:
             files = [f for f in files if f.date in dates]
         if tiles is not None:

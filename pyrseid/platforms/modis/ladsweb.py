@@ -1,6 +1,6 @@
-import geospatial.platforms.modis as modis
-from geospatial.download import (ftp_login, ftp_listdir, ftp_listfiles)
-from geospatial.utils import (list_links, doy_to_datetime)
+from .file import File
+from ...download import ftp_login, ftp_listdir, ftp_listfiles
+from ...utils import list_links, doy_to_datetime
 
 
 _ladsweb_server_name = "ladsweb.nascom.nasa.gov"
@@ -53,7 +53,8 @@ def available_files(prod, dates=None, tiles=None):
         #sys.stdout.flush()
         
         all_filenames = ftp_listfiles(server, ad[d])
-        files = [modis.File.from_path("ftp://" + '/'.join([_ladsweb_server_name, f])) for f in all_filenames]
+        files = [File.from_path("ftp://" + '/'.join(
+            [_ladsweb_server_name, f])) for f in all_filenames]
         if tiles is not None:
             files = [f for f in files if f.tile in tiles]
         af.extend(files)
